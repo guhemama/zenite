@@ -1,3 +1,3 @@
-module Zenity
+module Zenite
   VERSION = "0.1.0"
 end
