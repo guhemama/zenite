@@ -8,14 +8,14 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gustavo H. Mascarenhas Machado"]
   spec.email         = ["guh@guh.me"]
 
-  spec.summary       = %q{A simple wrapper for the zenity library.}
-  spec.description   = %q{This is a simple Ruby wrapper for the zenity library.}
+  spec.summary       = %q{A simple wrapper for the zenity tool.}
+  spec.description   = %q{A simple Ruby wrapper for the zenity tool.}
   spec.homepage      = "https://github.com/guhemama/zenite"
   spec.license       = "MIT"
 
   spec.metadata["homepage_uri"]    = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/guhemama/zenite"
-  spec.metadata["changelog_uri"]   = "https://github.com/guhemama/zenite/CHANGELOG.md"
+  spec.metadata["changelog_uri"]   = "https://github.com/guhemama/zenite/blob/master/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

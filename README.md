@@ -1,6 +1,6 @@
 # Zenite
 
-Zenite is a work in progress wrapper for the `zenity` CLI tool.
+Zenite is a work in progress wrapper for the `zenity` tool.
 
 ## Installation
 
