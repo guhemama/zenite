@@ -1,4 +1,4 @@
-# Zenite
+# Zenite ![Build Status](https://travis-ci.org/guhemama/zenite.svg?branch=master)
 
 Zenite is a work in progress wrapper for the `zenity` tool.
 
