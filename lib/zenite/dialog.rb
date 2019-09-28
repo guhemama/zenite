@@ -1,24 +1,25 @@
+# frozen_string_literal: true
+
 require 'open3'
 
 module Zenite
   class Dialog
-    attr_reader :dialog_type, :opts, :stdout, :stderr, :status
-    attr_accessor :width, :height, :timeout
+    include Option
 
-    def initialize
-      @opts = {}
-    end
+    attr_reader :dialog_type, :stdout, :stderr, :status
+    attr_accessor :width, :height, :timeout
 
     def display
       @stdout, @stderr, @status = Open3.capture3(to_cmd)
     end
 
     def to_cmd
-      "zenity --#{dialog_type} #{dialog_opts}"
+      "zenity --#{type} #{all_opts}"
     end
 
     protected
-    def dialog_type
+
+    def type
       self.class
           .name
           .split('::')
@@ -26,11 +27,19 @@ module Zenite
           .downcase
     end
 
+    def all_opts
+      unless dialog_opts.is_a? Hash
+        raise 'Method `dialog_opts` should return a Hash.'
+      end
+
+      dialog_opts
+        .merge(general_opts)
+        .map { |opt, val| %(--#{opt.to_s}="#{val}") }
+        .join ' '
+    end
+
     def dialog_opts
-      @opts
-          .merge(general_opts)
-          .map { |opt, val| %{--#{opt.to_s}="#{val}"} }
-          .join " "
+      raise NotImplementedError
     end
 
     def general_opts
@@ -38,14 +47,6 @@ module Zenite
         height: @height,
         timeout: @timeout
       }.filter { |_, v| !!v }
-    end
-
-    def method_missing(method_name, *args, &block)
-      if method_name === :text
-        @opts[:method_name] = args[0]
-      else
-        super
-      end
     end
   end
 end
